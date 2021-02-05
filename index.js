@@ -9,8 +9,6 @@ function tokenValidator(req, res, next) {
 
   if (token.length !== 12 || !validator.test(String(token).toLowerCase())) {
     return res.status(401).send("Invalid token");
-  } else {
-    res.status(202).send("Successfully logged in");
   }
 
   next();
@@ -27,9 +25,8 @@ async function api() {
 
 app.get('/btc/prices', async (req, res) => {
   const result = await api();
-  console.log(result)
 
-  res.json(req.headers.authorization);
+  res.json(result);
 });
 
-app.listen(port, () => console.log(`Example app listening on port 3000!`)); 
+app.listen(port, () => console.log(`Example app listening on port 3000!`));
